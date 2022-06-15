@@ -18,11 +18,12 @@ const ProductsList: FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  useEffect(() => {
+  useEffect(() => { // show products in table base on category choosed by user
     setProductsList(
       fullProductsArr.filter((product) => product.category.id === category)
     );
   }, [category]);
+  
   const fetchData = async () => {
     const responseFromServer = await fetch(
       "http://localhost:3001/api/products"
@@ -31,32 +32,32 @@ const ProductsList: FC = () => {
     setProductsList(dataTransformed);
     setFullProductsArr(dataTransformed);
   };
-  const sortAscending = () => {
+  const sortAscending = () => { // sort products in ascending order based on price
     setProductsList([
       ...productsList.sort(
         (product1, product2) => product1.price - product2.price
       ),
     ]);
   };
-  const sortDescending = () => {
+  const sortDescending = () => {// sort products in descending order based on price
     setProductsList([
       ...productsList.sort(
         (product1, product2) => product2.price - product1.price
       ),
     ]);
   };
-  const productsCategory = fullProductsArr.map(
+  const productsCategory = fullProductsArr.map( // create an array with all categories disponibles
     (product) => product.category.id
   );
-  const uniqueArray = productsCategory.filter(function (product, pos) {
+  const uniqueArrayProducts = productsCategory.filter(function (product, pos) { 
     return productsCategory.indexOf(product) === pos;
   });
-  const showAllProducts = () => {
+  const showAllProducts = () => { 
     fetchData();
     setCategory("");
   };
   const cartCtx = useContext(CartContext);
-  const addProd = (id: number, name: string, price: number) => {
+  const addProd = (id: number, name: string, price: number) => {// function to add element to cart or to increase the amount
     cartCtx.addProduct({
       id: id,
       name: name,
@@ -64,7 +65,7 @@ const ProductsList: FC = () => {
       amount: 1,
     });
   };
-  const removeProduct = (id: number) => {
+  const removeProduct = (id: number) => {// function to remove element from cart or to decrease the amount
     cartCtx.removeProduct(id);
   };
   return (
@@ -80,7 +81,7 @@ const ProductsList: FC = () => {
           <button className="button">Category</button>
           <div className="dropdown-content">
             <div onClick={showAllProducts}>Show all</div>
-            {uniqueArray.map((prod) => (
+            {uniqueArrayProducts.map((prod) => (
               <div key={prod} onClick={() => setCategory(prod)}>
                 {prod}
               </div>
