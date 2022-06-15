@@ -17,6 +17,6 @@ app.get("/api/product/categories/", function (req, res) {
   res.send(categories);
 });
 
-app.listen('https://ebstest.vercel.app/', () =>
+app.listen(procces.env.PORT, () =>
   console.log("Server successfully started on port 3001!")
 );
