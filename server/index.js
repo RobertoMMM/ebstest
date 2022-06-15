@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const { data, categories } = require("./server/data.js");
+const { data, categories } = require("./data.js");
 
 const app = express();
 
@@ -17,6 +17,6 @@ app.get("/api/product/categories/", function (req, res) {
   res.send(categories);
 });
 
-app.listen(procces.env.PORT, () =>
+app.listen(3001, () =>
   console.log("Server successfully started on port 3001!")
 );
