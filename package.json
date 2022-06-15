@@ -21,9 +21,7 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "node ./server",
-    "serve:client": "react-scripts --openssl-legacy-provider start",
-    "serve:server": "node ./server"
+    "start": "node ./server"
   },
   "eslintConfig": {
     "extends": [
