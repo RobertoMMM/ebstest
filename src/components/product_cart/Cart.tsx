@@ -4,7 +4,7 @@ import { CartContext } from "../../store/cart-context";
 const Cart: FC = () => {
   const cartCtx = useContext(CartContext);
   const products = cartCtx.products;
-  const addProd = (id: number, name: string, price: number) => {
+  const addProd = (id: number, name: string, price: number) => { // function to add element to cart or to increase the amount
     cartCtx.addProduct({
       id: id,
       name: name,
@@ -12,7 +12,7 @@ const Cart: FC = () => {
       amount: 1,
     });
   };
-  const removeProduct = (id: number) => {
+  const removeProduct = (id: number) => { // function to remove element from cart or to decrease the amount
     cartCtx.removeProduct(id);
   };
   return (
