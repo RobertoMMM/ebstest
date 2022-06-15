@@ -57,12 +57,13 @@ const ProductsList: FC = () => {
     setCategory("");
   };
   const cartCtx = useContext(CartContext);
-  const addProd = (id: number, name: string, price: number) => {// function to add element to cart or to increase the amount
+  const addProd = (id: number, name: string, price: number, category: string) => {// function to add element to cart or to increase the amount
     cartCtx.addProduct({
       id: id,
       name: name,
       price: price,
       amount: 1,
+      category: category
     });
   };
   const removeProduct = (id: number) => {// function to remove element from cart or to decrease the amount
@@ -99,7 +100,7 @@ const ProductsList: FC = () => {
                 <th>{prod.price}$</th>
                 <td>
                   <button
-                    onClick={() => addProd(prod.id, prod.name, prod.price)}
+                    onClick={() => addProd(prod.id, prod.name, prod.price, prod.category.name)}
                     className="buttonAdd"
                   >
                     ADD

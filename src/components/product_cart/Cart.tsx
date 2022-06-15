@@ -25,6 +25,7 @@ const Cart: FC = () => {
               {products &&
                 products.map((prod: any) => (
                   <tr key={prod.id}>
+                    <th>{prod.category}</th>
                     <th>{prod.name}</th>
                     <th>{prod.price}$</th>
                     <th>{prod.amount}x</th>
